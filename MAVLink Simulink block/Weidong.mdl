@@ -1,12 +1,12 @@
 Model {
-  Name			  "ReferenceModel_2rdOrder"
+  Name			  "Weidong"
   Version		  7.7
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3"
+    ComputedModelVersion    "1.1463"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -20,22 +20,26 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "Omega_r = 2;"
-  Created		  "Sat Aug 03 16:32:30 2013"
-  Creator		  "Vicon"
+  InitFcn		  "sample_time=0.005;%0.004;%0.0025;%0.02;\nDeltaT = 0.02;\ng = 9.81;\nH0 = g%0.3165;\nKl = 1;\n\nOmega_r ="
+  " 1.6;%for Horizontal reference\nZeta_r = 0.7; %for Horizontal reference\nOmega = 1.8;%for Horizontal Control\nZeta ="
+  " 0.5;    %for Horizontal Control\n\nOmega_h_r = 2.5; %for vertical reference\nZeta_h_r = 0.8;  %for vertical referen"
+  "ce\nOmega_h = 2.7;    %for vertical control\nZeta_h = 0.8;         %for vertical control\nPI=pi;\n\nMass = 1.1;\nAcc"
+  "_Max = 4;\nAcc_Max_h = 4;\n\nMax_RP = 60;\n"
+  Created		  "Thu Nov 24 10:40:23 2011"
+  Creator		  "ttcl3"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "Vicon"
+  LastModifiedBy	  "CHIEW"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Aug 14 12:14:58 2013"
-  RTWModifiedTimeStamp	  297448630
-  ModelVersionFormat	  "1.%<AutoIncrement:3>"
+  LastModifiedDate	  "Fri Oct 18 23:48:26 2013"
+  RTWModifiedTimeStamp	  304040547
+  ModelVersionFormat	  "1.%<AutoIncrement:1463>"
   ConfigurationManager	  "None"
-  SampleTimeColors	  off
+  SampleTimeColors	  on
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "none"
   WideLines		  off
-  ShowLineDimensions	  off
+  ShowLineDimensions	  on
   ShowPortDataTypes	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
@@ -61,25 +65,6 @@ Model {
   AccelTemplateMakefile	  "accel_default_tmf"
   AccelMakeCommand	  "make_rtw"
   TryForcingSFcnDF	  off
-  Object {
-    $PropName		    "DataLoggingOverride"
-    $ObjectID		    1
-    $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "ReferenceModel_2rdOrder"
-    overrideMode_	    [0.0]
-    Array {
-      Type		      "Cell"
-      Dimension		      1
-      Cell		      "ReferenceModel_2rdOrder"
-      PropName		      "logAsSpecifiedByModels_"
-    }
-    Array {
-      Type		      "Cell"
-      Dimension		      1
-      Cell		      []
-      PropName		      "logAsSpecifiedByModelsSSIDs_"
-    }
-  }
   RecordCoverage	  off
   CovPath		  "/"
   CovSaveName		  "covdata"
@@ -122,18 +107,18 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      2
+      $ObjectID		      1
       Version		      "1.11.0"
       Array {
 	Type			"Handle"
-	Dimension		9
+	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  3
+	  $ObjectID		  2
 	  Version		  "1.11.0"
 	  StartTime		  "0.0"
-	  StopTime		  "5"
+	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "auto"
+	  FixedStep		  "sample_time"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -144,12 +129,12 @@ Model {
 	  NumberNewtonIterations  1
 	  MaxStep		  "auto"
 	  MinStep		  "auto"
-	  MaxConsecutiveMinStep	  "1"
+	  MaxConsecutiveMinStep	  "auto"
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
 	  ConcurrentTasks	  off
-	  Solver		  "ode45"
-	  SolverName		  "ode45"
+	  Solver		  "ode4"
+	  SolverName		  "ode4"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -162,7 +147,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  4
+	  $ObjectID		  3
 	  Version		  "1.11.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -194,7 +179,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  5
+	  $ObjectID		  4
 	  Version		  "1.11.0"
 	  Array {
 	    Type		    "Cell"
@@ -249,7 +234,7 @@ Model {
 	  AccelParallelForEachSubsystem	on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  6
+	  $ObjectID		  5
 	  Version		  "1.11.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -280,7 +265,7 @@ Model {
 	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "error"
 	  MultiTaskCondExecSysMsg "error"
-	  MultiTaskRateTransMsg	  "error"
+	  MultiTaskRateTransMsg	  "warning"
 	  SingleTaskRateTransMsg  "none"
 	  TasksWithSamePriorityMsg "warning"
 	  SigSpecEnsureSampleTimeMsg "warning"
@@ -335,7 +320,7 @@ Model {
 	  SFTransitionOutsideNaturalParentDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  7
+	  $ObjectID		  6
 	  Version		  "1.11.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -372,7 +357,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  8
+	  $ObjectID		  7
 	  Version		  "1.11.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -387,7 +372,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  9
+	  $ObjectID		  8
 	  Version		  "1.11.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -397,12 +382,12 @@ Model {
 	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
-	  SimParseCustomCode	  on
+	  SimParseCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  10
+	  $ObjectID		  9
 	  Version		  "1.11.0"
 	  Array {
 	    Type		    "Cell"
@@ -455,7 +440,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      11
+	      $ObjectID		      10
 	      Version		      "1.11.0"
 	      Array {
 		Type			"Cell"
@@ -520,7 +505,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      12
+	      $ObjectID		      11
 	      Version		      "1.11.0"
 	      Array {
 		Type			"Cell"
@@ -602,30 +587,17 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
-	hdlcoderui.hdlcc {
-	  $ObjectID		  13
-	  Version		  "1.11.0"
-	  Description		  "HDL Coder custom configuration component"
-	  Name			  "HDL Coder"
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    1
-	    Cell		    ""
-	    PropName		    "HDLConfigFile"
-	  }
-	  HDLCActiveTab		  "0"
-	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 520, 225, 1400, 855 ] 
+      ConfigPrmDlgPosition     [ 206, 84, 1075, 655 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    2
+    $ObjectID		    1
   }
   BlockDefaults {
     ForegroundColor	    "black"
@@ -660,54 +632,67 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      DiscreteIntegrator
-      IntegratorMethod	      "Integration: Forward Euler"
-      gainval		      "1.0"
-      ExternalReset	      "none"
-      InitialConditionSource  "internal"
-      InitialCondition	      "0"
-      InitialConditionMode    "State and output"
-      SampleTime	      "1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	off
-      LimitOutput	      off
-      UpperSaturationLimit    "inf"
-      LowerSaturationLimit    "-inf"
-      ShowSaturationPort      off
-      ShowStatePort	      off
-      IgnoreLimit	      off
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
-    Block {
-      BlockType		      DiscretePulseGenerator
-      PulseType		      "Sample based"
-      TimeSource	      "Use simulation time"
-      Amplitude		      "1"
-      Period		      "2"
-      PulseWidth	      "1"
-      PhaseDelay	      "0"
-      SampleTime	      "1"
+      BlockType		      Constant
+      Value		      "1"
       VectorParams1D	      on
-    }
-    Block {
-      BlockType		      Gain
-      Gain		      "1"
-      Multiplication	      "Element-wise(K.*u)"
-      ParamMin		      "[]"
-      ParamMax		      "[]"
-      ParamDataTypeStr	      "Inherit: Same as input"
+      SamplingMode	      "Sample based"
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
       LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+      PreserveConstantTs      off
+    }
+    Block {
+      BlockType		      Display
+      Format		      "short"
+      Decimation	      "10"
+      Floating		      off
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
+    }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
     }
     Block {
       BlockType		      S-Function
@@ -715,38 +700,6 @@ Model {
       SFunctionModules	      "''"
       PortCounts	      "[]"
       SFunctionDeploymentMode off
-    }
-    Block {
-      BlockType		      Saturate
-      UpperLimitSource	      "Dialog"
-      UpperLimit	      "0.5"
-      LowerLimitSource	      "Dialog"
-      LowerLimit	      "-0.5"
-      LinearizeAsGain	      on
-      ZeroCross		      on
-      SampleTime	      "-1"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as input"
-      LockScale		      off
-      RndMeth		      "Floor"
-    }
-    Block {
-      BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
-      Decimation	      "1"
-      SampleInput	      off
-      SampleTime	      "-1"
     }
     Block {
       BlockType		      SubSystem
@@ -770,138 +723,31 @@ Model {
       Variant		      off
       GeneratePreprocessorConditionals off
     }
-    Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
   }
   System {
-    Name		    "ReferenceModel_2rdOrder"
-    Location		    [76, 170, 1176, 797]
+    Name		    "Weidong"
+    Location		    [0, 50, 1350, 736]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
     PaperOrientation	    "landscape"
     PaperPositionMode	    "auto"
-    PaperType		    "usletter"
-    PaperUnits		    "inches"
-    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    PaperType		    "A4"
+    PaperUnits		    "centimeters"
+    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "28"
-    Block {
-      BlockType		      Gain
-      Name		      "2*zeta*omega"
-      SID		      "2"
-      Position		      [430, 218, 535, 252]
-      BlockMirror	      on
-      Gain		      "2*Omega_r"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Acc"
-      SID		      "24"
-      Ports		      [1]
-      Position		      [705, 84, 735, 116]
-      Floating		      off
-      Location		      [436, 456, 760, 695]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      SaveName		      "ScopeData1"
-      DataFormat	      "StructureWithTime"
-      LimitDataPoints	      off
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      DiscreteIntegrator
-      Name		      "Discrete-Time\nIntegrator"
-      SID		      "3"
-      Ports		      [1, 1]
-      Position		      [505, 144, 540, 176]
-      IntegratorMethod	      "Integration: Forward Euler"
-      ExternalReset	      "none"
-      InitialConditionSource  "internal"
-      SampleTime	      "0.02"
-      ICPrevOutput	      "DiscIntNeverNeededParam"
-      ICPrevScaledInput	      "DiscIntNeverNeededParam"
-    }
-    Block {
-      BlockType		      DiscreteIntegrator
-      Name		      "Discrete-Time\nIntegrator1"
-      SID		      "4"
-      Ports		      [1, 1]
-      Position		      [635, 144, 670, 176]
-      IntegratorMethod	      "Integration: Forward Euler"
-      ExternalReset	      "none"
-      InitialConditionSource  "internal"
-      SampleTime	      "0.02"
-      ICPrevOutput	      "DiscIntNeverNeededParam"
-      ICPrevScaledInput	      "DiscIntNeverNeededParam"
-      Port {
-	PortNumber		1
-	Name			"ComRef"
-	RTWStorageClass		"Auto"
-	DataLoggingNameMode	"SignalName"
-      }
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "P"
-      SID		      "23"
-      Ports		      [1]
-      Position		      [790, 144, 820, 176]
-      Floating		      off
-      Location		      [969, 56, 1913, 1031]
-      Open		      on
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      DataFormat	      "StructureWithTime"
-      LimitDataPoints	      off
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      DiscretePulseGenerator
-      Name		      "Pulse\nGenerator"
-      SID		      "28"
-      Ports		      [0, 1]
-      Position		      [190, 144, 220, 176]
-      PulseType		      "Time based"
-      Amplitude		      "2"
-      Period		      "10"
-      PulseWidth	      "50"
-    }
+    SIDHighWatermark	    "2031"
     Block {
       BlockType		      SubSystem
-      Name		      "Real-time\nClock"
-      SID		      "26"
-      Ports		      []
-      Position		      [416, 46, 453, 77]
-      ShowPortLabels	      "none"
+      Name		      "Command"
+      SID		      "1084"
+      Ports		      [0, 1]
+      Position		      [110, 52, 185, 258]
+      BackgroundColor	      "darkGreen"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -909,32 +755,9 @@ Model {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskType		      "Real-time Clock"
-      MaskDescription	      "Real-time Synchronization Block"
-      MaskHelp		      "This block synchronizes simulation time with the PC real-time clock or UNIX system clock. The f"
-      "irst dialog entry is the period at which the clock is checked to insure real-time synchronization. The second di"
-      "alog entry is the number of seconds that the simulation time must be within real-time before a warning is printe"
-      "d."
-      MaskPromptString	      "Synchronize with real-time every n seconds:|Real-time warning tolerance (seconds):"
-      MaskStyleString	      "edit,edit"
-      MaskVariables	      "sample_time=@1;tolerance=@2;"
-      MaskTunableValueString  "on,on"
-      MaskCallbackString      "|"
-      MaskEnableString	      "on,on"
-      MaskVisibilityString    "on,on"
-      MaskToolTipString	      "on,on"
-      MaskDisplay	      "plot(0,0,100,100,[40,60,60,54,54,64,69,76,82,77,81,83,83,81,78,74,70,64,57,49,41,35,32,30,30,"
-      "31,34,40,47,47,40,40],[90,90,85,85,80,79,76,87,80,70,64,57,49,41,33,28,24,22,21,23,25,31,37,46,56,65,73,78,80,85"
-      ",85,90],[69,53,53],[64,50,73])"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "none"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.02|1"
       System {
-	Name			"Real-time\nClock"
-	Location		[25, 101, 220, 226]
+	Name			"Command"
+	Location		[2, 82, 1348, 739]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -946,184 +769,302 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"103"
 	Block {
-	  BlockType		  S-Function
-	  Name			  "Real-time\nClock"
-	  SID			  "27"
-	  Ports			  []
-	  Position		  [70, 52, 140, 78]
-	  ShowName		  off
-	  FunctionName		  "rtclock"
-	  Parameters		  "sample_time, tolerance"
-	  EnableBusSupport	  off
+	  BlockType		  SubSystem
+	  Name			  "Mixer"
+	  SID			  "60"
+	  Ports			  [5, 1]
+	  Position		  [95, 41, 180, 229]
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "Mixer"
+	    Location		    [608, 82, 1377, 739]
+	    Open		    on
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "181"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Thrust"
+	      SID		      "62"
+	      Position		      [55, 38, 85, 52]
+	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		Name			"Thrust Cmd [-1 1]"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Roll"
+	      SID		      "61"
+	      Position		      [55, 88, 85, 102]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		Name			"Roll Cmd (deg)"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Pitch"
+	      SID		      "2029"
+	      Position		      [55, 138, 85, 152]
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		Name			"Pitch Cmd (deg)"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Yaw rate"
+	      SID		      "63"
+	      Position		      [55, 188, 85, 202]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		Name			"Yaw Rate Cmd (deg/s)"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "PWM"
+	      SID		      "1437"
+	      Position		      [55, 238, 85, 252]
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		Name			"PWM"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux1"
+	      SID		      "64"
+	      Ports		      [6, 1]
+	      Position		      [300, 17, 310, 323]
+	      ShowName		      off
+	      Inputs		      "6"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "id"
+	      SID		      "67"
+	      Position		      [55, 280, 85, 310]
+	      SampleTime	      "0.02"
+	      Port {
+		PortNumber		1
+		Name			"Quad ID"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Cmd"
+	      SID		      "68"
+	      Position		      [370, 163, 400, 177]
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Mux1"
+	      SrcPort		      1
+	      DstBlock		      "Cmd"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "Thrust Cmd [-1 1]"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Thrust"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "Roll Cmd (deg)"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Roll"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      2
+	    }
+	    Line {
+	      Name		      "Yaw Rate Cmd (deg/s)"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Yaw rate"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      4
+	    }
+	    Line {
+	      Name		      "PWM"
+	      Labels		      [1, 1]
+	      SrcBlock		      "PWM"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "Quad ID"
+	      Labels		      [1, 1]
+	      SrcBlock		      "id"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      6
+	    }
+	    Line {
+	      Name		      "Pitch Cmd (deg)"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Pitch"
+	      SrcPort		      1
+	      DstBlock		      "Mux1"
+	      DstPort		      3
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "TRPY Cmd"
+	  SID			  "1086"
+	  Position		  [255, 128, 285, 142]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Mixer"
+	  SrcPort		  1
+	  DstBlock		  "TRPY Cmd"
+	  DstPort		  1
 	}
       }
     }
     Block {
-      BlockType		      Gain
-      Name		      "Square(omega)"
-      SID		      "11"
-      Position		      [305, 142, 400, 178]
-      Gain		      "Omega_r^2"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
+      BlockType		      S-Function
+      Name		      "MAVLink Serial"
+      SID		      "54"
+      Ports		      [1, 1]
+      Position		      [230, 27, 550, 283]
+      BackgroundColor	      "cyan"
+      DropShadow	      on
+      FontName		      "Arial Black"
+      FontSize		      11
+      FontWeight	      "bold"
+      FunctionName	      "MAVLink_Interface_MultUAV"
+      Parameters	      "COM_Port,Baud_Rate,MSG_INPUT,MSG_OUTPUT"
+      EnableBusSupport	      off
+      MaskPromptString	      "COM Port|Baud Rate|RC CHANNELS SCALED|Quad No 1|Quad No 2|Quad No 3"
+      MaskStyleString	      "edit,edit,checkbox,checkbox,checkbox,checkbox"
+      MaskVariables	      "COM_Port=@1;Baud_Rate=@2;RC_SCALED=@3;Quad_1=@4;Quad_2=@5;Quad_3=@6;"
+      MaskTunableValueString  "on,on,on,on,on,on"
+      MaskCallbackString      "|||||"
+      MaskEnableString	      "on,on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on,on"
+      MaskInitialization      "MSG_ID_NUM_INPUT = [uint8(196) uint8(197) uint8(198)];\nMSG_ID_NAME_INPUT = [Quad_1 Qua"
+      "d_2 Quad_3];\n\nMSG_ID_NUM_OUTPUT = [uint8(34)];\nMSG_ID_NAME_OUTPUT = [RC_SCALED];\n\nidx_input = find(MSG_ID_N"
+      "AME_INPUT);\nMSG_INPUT = MSG_ID_NUM_INPUT(idx_input);\n\nidx_output = find(MSG_ID_NAME_OUTPUT);\nMSG_OUTPUT = MS"
+      "G_ID_NUM_OUTPUT(idx_output);"
+      MaskDisplay	      "% Block image\nimage(imread('10-inch Quad Heat Map.png'));\n\n%Label block\nfprintf('MAVLink "
+      "Serial\\n%s\\n%dbps', COM_Port,  Baud_Rate)\n\n\n%Label input ports\n\nin = 1;\nif (Quad_1 == 1)\n    port_label"
+      "('input', in, 'Quad 1');\n    in = in + 1;\nend\nif (Quad_2 == 1)\n    port_label('input', in, 'Quad 2');\n    i"
+      "n = in + 1;\nend\n\nif (Quad_3 == 1)\n    port_label('input', in, 'Quad 3');\n    in = in + 1;\nend\n\n%Label ou"
+      "tput ports\n\nout = 1;\nif (RC_SCALED == 1)\n    port_label('output', out, 'RC CMD');\n    out = out + 1;\nend\n"
+      MaskIconFrame	      on
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "'COM1'|57600|on|on|off|off"
+      MaskTabNameString	      "Setting,Setting,Output Message,Input Message,Input Message,Input Message"
     }
     Block {
-      BlockType		      Sum
-      Name		      "Sum"
-      SID		      "12"
-      Ports		      [2, 1]
-      Position		      [265, 150, 285, 170]
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "|+-"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum1"
-      SID		      "13"
-      Ports		      [2, 1]
-      Position		      [415, 150, 435, 170]
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "|+-"
-      InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Vel"
-      SID		      "25"
+      BlockType		      Display
+      Name		      "RC Cmd\n[Channel 8 represents Thrust]"
+      SID		      "55"
       Ports		      [1]
-      Position		      [870, 349, 900, 381]
-      Floating		      off
-      Location		      [188, 390, 512, 629]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      SaveName		      "ScopeData2"
-      DataFormat	      "StructureWithTime"
-      LimitDataPoints	      off
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Saturate
-      Name		      "Vel lim"
-      SID		      "14"
-      Ports		      [1, 1]
-      Position		      [565, 148, 590, 172]
-      InputPortMap	      "u0"
-      UpperLimit	      "3"
-      LowerLimit	      "-3"
-    }
-    Block {
-      BlockType		      Saturate
-      Name		      "acc lim"
-      SID		      "15"
-      Ports		      [1, 1]
-      Position		      [455, 148, 480, 172]
-      InputPortMap	      "u0"
-      UpperLimit	      "2"
-      LowerLimit	      "-2"
+      Position		      [595, 66, 715, 244]
+      DropShadow	      on
+      FontName		      "Arial"
+      FontWeight	      "bold"
+      Decimation	      "1"
+      Lockdown		      off
     }
     Line {
-      Name		      "ComRef"
-      Labels		      [0, 0]
-      SrcBlock		      "Discrete-Time\nIntegrator1"
+      SrcBlock		      "Command"
       SrcPort		      1
-      Points		      [25, 0]
-      Branch {
-	Labels			[2, 0]
-	Points			[0, 145; -425, 0]
-	DstBlock		"Sum"
-	DstPort			2
-      }
-      Branch {
-	Labels			[1, 1]
-	DstBlock		"P"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Pulse\nGenerator"
-      SrcPort		      1
-      DstBlock		      "Sum"
+      DstBlock		      "MAVLink Serial"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Sum"
+      SrcBlock		      "MAVLink Serial"
       SrcPort		      1
-      DstBlock		      "Square(omega)"
+      DstBlock		      "RC Cmd\n[Channel 8 represents Thrust]"
       DstPort		      1
     }
-    Line {
-      SrcBlock		      "Square(omega)"
-      SrcPort		      1
-      DstBlock		      "Sum1"
-      DstPort		      1
+  }
+}
+# Finite State Machines
+#
+#    Stateflow Version 7.5 (R2010a) dated Mar  4 2011, 22:36:02
+#
+#
+
+
+Stateflow {
+  machine {
+    id			    1
+    name		    "Weidong"
+    created		    "03-Sep-2012 14:26:53"
+    isLibrary		    0
+    firstTarget		    2
+    debug {
+      disableAllBreakpoints   1
+      runTimeCheck	      [0 0 0 0]
+      animation		      [0 0 0]
     }
-    Line {
-      SrcBlock		      "Discrete-Time\nIntegrator"
-      SrcPort		      1
-      DstBlock		      "Vel lim"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Sum1"
-      SrcPort		      1
-      DstBlock		      "acc lim"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "2*zeta*omega"
-      SrcPort		      1
-      DstBlock		      "Sum1"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "acc lim"
-      SrcPort		      1
-      Points		      [0, 0]
-      Branch {
-	DstBlock		"Discrete-Time\nIntegrator"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -60]
-	DstBlock		"Acc"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Vel lim"
-      SrcPort		      1
-      Points		      [15, 0]
-      Branch {
-	Points			[-50, 70; 50, 0]
-	Branch {
-	  Points		  [-50, 0; 0, 5]
-	  DstBlock		  "2*zeta*omega"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [35, 0; 0, 135]
-	  DstBlock		  "Vel"
-	  DstPort		  1
-	}
-      }
-      Branch {
-	DstBlock		"Discrete-Time\nIntegrator1"
-	DstPort			1
-      }
-    }
+    sfVersion		    75014001
+  }
+  target {
+    id			    2
+    name		    "sfun"
+    description		    "Default Simulink S-Function Target."
+    machine		    1
+    linkNode		    [1 0 3]
+  }
+  target {
+    id			    3
+    name		    "rtw"
+    machine		    1
+    linkNode		    [1 2 0]
   }
 }
